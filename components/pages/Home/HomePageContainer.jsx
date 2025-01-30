@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react"
 import ReactPaginate from "react-paginate"
 import { MovieCard } from "@/components"
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa"
 
 const HomePageContainer = () => {
   const [movies, setMovies] = useState(null)
@@ -50,7 +51,7 @@ const HomePageContainer = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-gray-300">
       <main className="flex-grow container mx-auto p-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {currentItems?.map((movie) => (
@@ -59,20 +60,20 @@ const HomePageContainer = () => {
         </div>
         <div className="mt-6 flex justify-center">
           <ReactPaginate
-            previousLabel={"← Previous"}
-            nextLabel={"Next →"}
+            previousLabel={<FaAngleLeft />}
+            nextLabel={<FaAngleRight />}
             pageCount={pageCount}
             onPageChange={handlePageClick}
             containerClassName={"flex gap-2"}
             pageClassName={
-              "p-2 bg-gray-700 text-white rounded-lg cursor-pointer"
+              "flex items-center justify-center bg-gray-700 text-white rounded-full w-8 h-8 cursor-pointer "
             }
-            activeClassName={"bg-gray-500"}
+            activeClassName={"bg-gray-400"}
             previousClassName={
-              "p-2 bg-gray-700 text-white rounded-lg cursor-pointer"
+              "flex items-center justify-center bg-gray-700 text-white rounded-full w-8 h-8 cursor-pointer "
             }
             nextClassName={
-              "p-2 bg-gray-700 text-white rounded-lg cursor-pointer"
+              "flex items-center justify-center bg-gray-700 text-white rounded-full w-8 h-8 cursor-pointer "
             }
             disabledClassName={"opacity-50 cursor-not-allowed"}
           />
