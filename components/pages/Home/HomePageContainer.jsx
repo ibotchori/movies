@@ -4,13 +4,12 @@ import { MovieCard, Pagination, Loading } from "@/components"
 
 const HomePageContainer = () => {
   const [movies, setMovies] = useState(null)
-  const [currentPage, setCurrentPage] = useState(0)
-  const itemsPerPage = 8
+  const [totalPages, setTotalPage] = useState(null)
+  const [currentPage, setCurrentPage] = useState(1)
 
   useEffect(() => {
     const fetchMovies = async () => {
-      const url =
-        "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1"
+      const url = `https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${currentPage}`
       const options = {
         method: "GET",
         headers: {
@@ -24,20 +23,17 @@ const HomePageContainer = () => {
         const response = await fetch(url, options)
         const data = await response.json()
         setMovies(data.results)
+        setTotalPage(data.total_pages)
       } catch (error) {
         console.error("Error fetching movies:", error)
       }
     }
 
     fetchMovies()
-  }, [])
-
-  const offset = currentPage * itemsPerPage
-  const currentItems = movies?.slice(offset, offset + itemsPerPage)
-  const pageCount = Math.ceil(movies?.length / itemsPerPage)
+  }, [currentPage])
 
   const handlePageClick = ({ selected }) => {
-    setCurrentPage(selected)
+    setCurrentPage(selected + 1)
   }
 
   if (!movies) {
@@ -48,11 +44,11 @@ const HomePageContainer = () => {
     <div className="min-h-screen flex flex-col bg-gray-600">
       <main className="flex-grow container mx-auto p-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {currentItems?.map((movie) => (
+          {movies?.map((movie) => (
             <MovieCard key={movie.id} movie={movie} />
           ))}
         </div>
-        <Pagination pageCount={pageCount} handlePageClick={handlePageClick} />
+        <Pagination pageCount={totalPages} handlePageClick={handlePageClick} />
       </main>
     </div>
   )
