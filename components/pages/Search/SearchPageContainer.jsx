@@ -1,8 +1,14 @@
 "use client"
 import React, { useState, useEffect } from "react"
-import { MovieCard, Pagination, Loading, Input } from "@/components"
+import {
+  MovieCard,
+  Pagination,
+  Loading,
+  Input,
+  LinkButton,
+  PageTitle,
+} from "@/components"
 import { useDebounce } from "@/hooks"
-import { LinkButton } from "@/components/UI"
 
 const SearchPageContainer = () => {
   const [movies, setMovies] = useState(null)
@@ -51,21 +57,20 @@ const SearchPageContainer = () => {
   return (
     <div className="min-h-screen flex flex-col bg-gray-600 ">
       <LinkButton text="Back" path="/" />
-      <main className="flex-grow container mx-auto p-4">
-        {/* Search input */}
+
+      <main className="flex-grow container mx-auto ">
+        <PageTitle text={"Search"} />
+
         <Input value={searchTerm} onChange={setSearchTerm} />
 
-        {/* Loading spinner */}
         {loading && <Loading />}
 
-        {/* Movie Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {movies?.map((movie) => (
             <MovieCard key={movie.id} movie={movie} />
           ))}
         </div>
 
-        {/* Pagination */}
         {totalPages > 1 && (
           <Pagination
             pageCount={totalPages}

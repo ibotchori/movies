@@ -1,6 +1,6 @@
 "use client"
 import React, { useState, useEffect } from "react"
-import { MovieCard, Pagination, Loading } from "@/components"
+import { MovieCard, Pagination, Loading, PageTitle } from "@/components"
 
 const HomePageContainer = () => {
   const [movies, setMovies] = useState(null)
@@ -9,7 +9,7 @@ const HomePageContainer = () => {
 
   useEffect(() => {
     const fetchMovies = async () => {
-      const url = `https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${currentPage}`
+      const url = `https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=${currentPage}`
       const options = {
         method: "GET",
         headers: {
@@ -43,11 +43,14 @@ const HomePageContainer = () => {
   return (
     <div className="min-h-screen flex flex-col bg-gray-600">
       <main className="flex-grow container mx-auto p-4">
+        <PageTitle text={"Top Rated Movies"} className={"pt-7"} />
+
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {movies?.map((movie) => (
             <MovieCard key={movie.id} movie={movie} />
           ))}
         </div>
+
         <Pagination pageCount={totalPages} handlePageClick={handlePageClick} />
       </main>
     </div>

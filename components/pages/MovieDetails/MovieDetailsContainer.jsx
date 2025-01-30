@@ -1,5 +1,5 @@
 "use client"
-import { LinkButton, Loading } from "@/components"
+import { LinkButton, Loading, PageTitle } from "@/components"
 import FavoriteContext from "@/context/favorite"
 import Image from "next/image"
 import { useParams } from "next/navigation"
@@ -47,7 +47,9 @@ const MovieDetailsContainer = () => {
     <div className="min-h-screen bg-gray-600 ">
       <LinkButton text="Back" path="/" />
 
-      <main className="container mx-auto p-6 text-white ">
+      <main className="container mx-auto pb-4 text-white ">
+        <PageTitle text={movie.title} />
+
         <div className="relative w-full h-96 sm:block hidden ">
           <Image
             src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
@@ -65,10 +67,11 @@ const MovieDetailsContainer = () => {
             height={450}
             className="rounded-lg shadow-lg"
           />
-
           <div>
             <div className="flex  w-full  justify-between">
-              <h1 className="text-3xl font-bold">{movie.title}</h1>
+              <p className="text-gray-400 text-lg mt-2 italic">
+                {movie.tagline}
+              </p>
               <div onClick={addToFavorites.bind(null, movie)}>
                 {isMovieInFavorite ? (
                   <FaHeart className="cursor-pointer" size={30} />
@@ -77,8 +80,6 @@ const MovieDetailsContainer = () => {
                 )}
               </div>
             </div>
-
-            <p className="text-gray-400 text-lg mt-2 italic">{movie.tagline}</p>
             <p className="mt-4">{movie.overview}</p>
             <p className="mt-4">
               <strong>Release Date:</strong> {movie.release_date}
