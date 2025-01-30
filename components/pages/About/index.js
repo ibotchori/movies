@@ -1,1 +1,0 @@
-export { default as AboutPageContainer } from "./AboutPageContainer"

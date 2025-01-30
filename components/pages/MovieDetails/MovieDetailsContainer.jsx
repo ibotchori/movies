@@ -1,13 +1,17 @@
 "use client"
 import { LinkButton, Loading } from "@/components"
+import FavoriteContext from "@/context/favorite"
 import Image from "next/image"
 import { useParams } from "next/navigation"
-import React, { useEffect, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
+import { FaRegHeart, FaHeart } from "react-icons/fa"
 
 const MovieDetailsContainer = () => {
   const params = useParams()
   const id = params?.slug[0]
   const [movie, setMovie] = useState(null)
+  const { addToFavorites, favorites } = useContext(FavoriteContext)
+  let isMovieInFavorite = favorites.some((item) => item?.id === movie?.id)
 
   useEffect(() => {
     if (!id) return
@@ -61,8 +65,19 @@ const MovieDetailsContainer = () => {
             height={450}
             className="rounded-lg shadow-lg"
           />
+
           <div>
-            <h1 className="text-3xl font-bold">{movie.title}</h1>
+            <div className="flex  w-full  justify-between">
+              <h1 className="text-3xl font-bold">{movie.title}</h1>
+              <div onClick={addToFavorites.bind(null, movie)}>
+                {isMovieInFavorite ? (
+                  <FaHeart className="cursor-pointer" size={30} />
+                ) : (
+                  <FaRegHeart className="cursor-pointer" size={30} />
+                )}
+              </div>
+            </div>
+
             <p className="text-gray-400 text-lg mt-2 italic">{movie.tagline}</p>
             <p className="mt-4">{movie.overview}</p>
             <p className="mt-4">
@@ -79,6 +94,7 @@ const MovieDetailsContainer = () => {
               <strong>Rating:</strong> {movie.vote_average} ({movie.vote_count}{" "}
               votes)
             </p>
+
             <div className="mt-4">
               <strong>Production Companies:</strong>
               <ul className="list-disc ml-5">

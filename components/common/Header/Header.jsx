@@ -7,8 +7,8 @@ const Header = () => {
         <Link className="hover:text-gray-400" href="/">
           Home
         </Link>
-        <Link className="hover:text-gray-400" href="/about">
-          About
+        <Link className="hover:text-gray-400" href="/favorites">
+          Favorites
         </Link>
         <Link className="hover:text-gray-400" href="/search">
           Search

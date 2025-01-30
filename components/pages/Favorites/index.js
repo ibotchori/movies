@@ -1,0 +1,1 @@
+export { default as FavoritesPageContainer } from "./FavoritesPageContainer"
