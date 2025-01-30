@@ -10,8 +10,8 @@ const Header = () => {
         <Link className="hover:text-gray-400" href="/about">
           About
         </Link>
-        <Link className="hover:text-gray-400" href="/filter">
-          Filter
+        <Link className="hover:text-gray-400" href="/search">
+          Search
         </Link>
       </nav>
     </header>
