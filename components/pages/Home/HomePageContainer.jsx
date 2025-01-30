@@ -1,7 +1,6 @@
 "use client"
 import React, { useState, useEffect } from "react"
-import { MovieCard } from "@/components"
-import { Pagination } from "@/components"
+import { MovieCard, Pagination, Loading } from "@/components"
 
 const HomePageContainer = () => {
   const [movies, setMovies] = useState(null)
@@ -42,15 +41,11 @@ const HomePageContainer = () => {
   }
 
   if (!movies) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <div className="loader">Loading...</div>
-      </div>
-    )
+    return <Loading />
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-300">
+    <div className="min-h-screen flex flex-col bg-gray-600">
       <main className="flex-grow container mx-auto p-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {currentItems?.map((movie) => (

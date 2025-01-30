@@ -1,4 +1,5 @@
 "use client"
+import { Loading } from "@/components/UI"
 import Image from "next/image"
 import Link from "next/link"
 import { useParams } from "next/navigation"
@@ -36,15 +37,11 @@ const MovieDetailsContainer = () => {
   }, [id])
 
   if (!movie) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <div className="loader">Loading...</div>
-      </div>
-    )
+    return <Loading />
   }
 
   return (
-    <div className="min-h-screen bg-gray-500 text-white">
+    <div className="min-h-screen bg-gray-600 text-white">
       <div className="p-4  font-bold text-xl">
         <div className="mt-6">
           <Link
