@@ -17,6 +17,12 @@ const Footer = () => {
             Privacy Policy
           </Link>
         </nav>
+        <div className="text-center  text-gray-400">
+          <p>
+            &copy; {new Date().getFullYear()} MovieHub. All rights reserved.
+          </p>
+          <p>Providing the best movie information and reviews since 2002.</p>
+        </div>
         <div className="flex gap-4 text-xl">
           <a
             href="https://facebook.com"
@@ -43,10 +49,6 @@ const Footer = () => {
             <FaInstagram />
           </a>
         </div>
-      </div>
-      <div className="text-center mt-4 text-gray-400">
-        <p>&copy; {new Date().getFullYear()} MovieHub. All rights reserved.</p>
-        <p>Providing the best movie information and reviews since 2002.</p>
       </div>
     </footer>
   )

@@ -1,7 +1,6 @@
 "use client"
-import { Loading } from "@/components/UI"
+import { LinkButton, Loading } from "@/components"
 import Image from "next/image"
-import Link from "next/link"
 import { useParams } from "next/navigation"
 import React, { useEffect, useState } from "react"
 
@@ -42,16 +41,8 @@ const MovieDetailsContainer = () => {
 
   return (
     <div className="min-h-screen bg-gray-600 text-white">
-      <div className="p-4  font-bold text-xl">
-        <div className="mt-6">
-          <Link
-            className="bg-blue-600 px-4 py-2 rounded-md hover:bg-blue-500"
-            href="/"
-          >
-            Back to Home
-          </Link>
-        </div>
-      </div>
+      <LinkButton text="Back" path="/" />
+
       <main className="container mx-auto p-6">
         <div className="relative w-full h-96 sm:block hidden ">
           <Image
