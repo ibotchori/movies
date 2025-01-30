@@ -4,9 +4,8 @@ import ReactPaginate from "react-paginate"
 import { MovieCard } from "@/components"
 
 const HomePageContainer = () => {
-  const [movies, setMovies] = useState([])
+  const [movies, setMovies] = useState(null)
   const [currentPage, setCurrentPage] = useState(0)
-  const [loading, setLoading] = useState(true)
   const itemsPerPage = 8
 
   useEffect(() => {
@@ -28,8 +27,6 @@ const HomePageContainer = () => {
         setMovies(data.results)
       } catch (error) {
         console.error("Error fetching movies:", error)
-      } finally {
-        setLoading(false)
       }
     }
 
@@ -37,49 +34,49 @@ const HomePageContainer = () => {
   }, [])
 
   const offset = currentPage * itemsPerPage
-  const currentItems = movies.slice(offset, offset + itemsPerPage)
-  const pageCount = Math.ceil(movies.length / itemsPerPage)
+  const currentItems = movies?.slice(offset, offset + itemsPerPage)
+  const pageCount = Math.ceil(movies?.length / itemsPerPage)
 
   const handlePageClick = ({ selected }) => {
     setCurrentPage(selected)
   }
 
+  if (!movies) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="loader">Loading...</div>
+      </div>
+    )
+  }
+
   return (
     <div className="min-h-screen flex flex-col">
       <main className="flex-grow container mx-auto p-4">
-        {loading ? (
-          <div className="flex justify-center items-center h-full">
-            <div className="loader">Loading...</div>
-          </div>
-        ) : (
-          <>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {currentItems.map((movie) => (
-                <MovieCard key={movie.id} movie={movie} />
-              ))}
-            </div>
-            <div className="mt-6 flex justify-center">
-              <ReactPaginate
-                previousLabel={"← Previous"}
-                nextLabel={"Next →"}
-                pageCount={pageCount}
-                onPageChange={handlePageClick}
-                containerClassName={"flex gap-2"}
-                pageClassName={
-                  "p-2 bg-gray-700 text-white rounded-lg cursor-pointer"
-                }
-                activeClassName={"bg-gray-500"}
-                previousClassName={
-                  "p-2 bg-gray-700 text-white rounded-lg cursor-pointer"
-                }
-                nextClassName={
-                  "p-2 bg-gray-700 text-white rounded-lg cursor-pointer"
-                }
-                disabledClassName={"opacity-50 cursor-not-allowed"}
-              />
-            </div>
-          </>
-        )}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {currentItems?.map((movie) => (
+            <MovieCard key={movie.id} movie={movie} />
+          ))}
+        </div>
+        <div className="mt-6 flex justify-center">
+          <ReactPaginate
+            previousLabel={"← Previous"}
+            nextLabel={"Next →"}
+            pageCount={pageCount}
+            onPageChange={handlePageClick}
+            containerClassName={"flex gap-2"}
+            pageClassName={
+              "p-2 bg-gray-700 text-white rounded-lg cursor-pointer"
+            }
+            activeClassName={"bg-gray-500"}
+            previousClassName={
+              "p-2 bg-gray-700 text-white rounded-lg cursor-pointer"
+            }
+            nextClassName={
+              "p-2 bg-gray-700 text-white rounded-lg cursor-pointer"
+            }
+            disabledClassName={"opacity-50 cursor-not-allowed"}
+          />
+        </div>
       </main>
     </div>
   )
