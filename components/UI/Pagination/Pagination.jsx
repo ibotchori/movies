@@ -12,14 +12,14 @@ const Pagination = ({ pageCount, handlePageClick }) => {
         onPageChange={handlePageClick}
         containerClassName={"flex gap-2"}
         pageClassName={
-          "flex items-center justify-center bg-gray-700 text-white rounded-full w-8 h-8 cursor-pointer "
+          "flex items-center hover:opacity-50 justify-center bg-gray-700 text-white rounded-full w-8 h-8 cursor-pointer "
         }
         activeClassName={"opacity-50"}
         previousClassName={
-          "flex items-center justify-center bg-gray-700 text-white rounded-full w-8 h-8 cursor-pointer "
+          "flex items-center hover:opacity-50 justify-center bg-gray-700 text-white rounded-full w-8 h-8 cursor-pointer "
         }
         nextClassName={
-          "flex items-center justify-center bg-gray-700 text-white rounded-full w-8 h-8 cursor-pointer "
+          "flex items-center hover:opacity-50 justify-center bg-gray-700 text-white rounded-full w-8 h-8 cursor-pointer "
         }
         disabledClassName={"opacity-50 cursor-not-allowed"}
       />
