@@ -1,7 +1,8 @@
 "use client"
 import React, { useState, useEffect } from "react"
 import { MovieCard, Pagination, Loading, Input } from "@/components"
-import useDebounce from "@/hooks/useDebounce"
+import { useDebounce } from "@/hooks"
+import { LinkButton } from "@/components/UI"
 
 const SearchPageContainer = () => {
   const [movies, setMovies] = useState(null)
@@ -48,7 +49,8 @@ const SearchPageContainer = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-600">
+    <div className="min-h-screen flex flex-col bg-gray-600 ">
+      <LinkButton text="Back" path="/" />
       <main className="flex-grow container mx-auto p-4">
         {/* Search input */}
         <Input value={searchTerm} onChange={setSearchTerm} />

@@ -40,10 +40,10 @@ const MovieDetailsContainer = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-600 text-white">
+    <div className="min-h-screen bg-gray-600 ">
       <LinkButton text="Back" path="/" />
 
-      <main className="container mx-auto p-6">
+      <main className="container mx-auto p-6 text-white ">
         <div className="relative w-full h-96 sm:block hidden ">
           <Image
             src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
