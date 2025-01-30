@@ -1,8 +1,7 @@
 "use client"
 import React, { useState, useEffect } from "react"
-import ReactPaginate from "react-paginate"
 import { MovieCard } from "@/components"
-import { FaAngleLeft, FaAngleRight } from "react-icons/fa"
+import { Pagination } from "@/components"
 
 const HomePageContainer = () => {
   const [movies, setMovies] = useState(null)
@@ -58,26 +57,7 @@ const HomePageContainer = () => {
             <MovieCard key={movie.id} movie={movie} />
           ))}
         </div>
-        <div className="mt-6 flex justify-center">
-          <ReactPaginate
-            previousLabel={<FaAngleLeft />}
-            nextLabel={<FaAngleRight />}
-            pageCount={pageCount}
-            onPageChange={handlePageClick}
-            containerClassName={"flex gap-2"}
-            pageClassName={
-              "flex items-center justify-center bg-gray-700 text-white rounded-full w-8 h-8 cursor-pointer "
-            }
-            activeClassName={"bg-gray-400"}
-            previousClassName={
-              "flex items-center justify-center bg-gray-700 text-white rounded-full w-8 h-8 cursor-pointer "
-            }
-            nextClassName={
-              "flex items-center justify-center bg-gray-700 text-white rounded-full w-8 h-8 cursor-pointer "
-            }
-            disabledClassName={"opacity-50 cursor-not-allowed"}
-          />
-        </div>
+        <Pagination pageCount={pageCount} handlePageClick={handlePageClick} />
       </main>
     </div>
   )
