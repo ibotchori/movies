@@ -1,7 +1,7 @@
 import { HomePageContainer } from "@/components"
 
 export const metadata = {
-  title: "All Movies",
+  title: "Best Movies List",
   description: "Best Movies List",
 }
 
