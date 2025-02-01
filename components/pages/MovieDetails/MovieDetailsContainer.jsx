@@ -44,7 +44,7 @@ const MovieDetailsContainer = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-600 ">
+    <div className="min-h-screen bg-gray-600 md:px-6 px-2 ">
       <LinkButton text="Back" path="/" />
 
       <main className="container mx-auto pb-4 text-white ">
