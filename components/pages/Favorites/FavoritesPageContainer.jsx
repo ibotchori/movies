@@ -1,5 +1,11 @@
 "use client"
-import { LinkButton, MovieCard, PageTitle, Pagination } from "@/components"
+import {
+  LinkButton,
+  Message,
+  MovieCard,
+  PageTitle,
+  Pagination,
+} from "@/components"
 import FavoriteContext from "@/context/favorite"
 import React, { useContext, useState } from "react"
 
@@ -22,14 +28,23 @@ const FavoritesPageContainer = () => {
       <main className="flex-grow container mx-auto pb-4">
         <PageTitle text={"Favorite Movies"} />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {currentItems?.map((movie) => (
-            <MovieCard key={movie.id} movie={movie} />
-          ))}
-        </div>
+        {favorites?.length === 0 ? (
+          <Message text={"Add Movies First"} />
+        ) : (
+          <>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {currentItems?.map((movie) => (
+                <MovieCard key={movie.id} movie={movie} />
+              ))}
+            </div>
 
-        {pageCount > 1 && (
-          <Pagination pageCount={pageCount} handlePageClick={handlePageClick} />
+            {pageCount > 1 && (
+              <Pagination
+                pageCount={pageCount}
+                handlePageClick={handlePageClick}
+              />
+            )}
+          </>
         )}
       </main>
     </div>

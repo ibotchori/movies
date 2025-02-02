@@ -7,6 +7,7 @@ import {
   Input,
   LinkButton,
   PageTitle,
+  Message,
 } from "@/components"
 import { useDebounce } from "@/hooks"
 
@@ -64,6 +65,10 @@ const SearchPageContainer = () => {
         <Input value={searchTerm} onChange={setSearchTerm} />
 
         {loading && <Loading />}
+
+        {!loading && movies?.length === 0 && (
+          <Message text={"No Movies Found"} />
+        )}
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {movies?.map((movie) => (
